@@ -1,0 +1,7 @@
+services:
+  website:
+    build: .
+    container_name: devops-assistant
+    ports:
+      - "8080:80"
+    restart: unless-stopped
