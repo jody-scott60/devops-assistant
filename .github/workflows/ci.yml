@@ -1,4 +1,4 @@
-name: Docker Build
+name: CI
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - master
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@e8d4307400f9427dba7cb98e488d6ab85f1cec5f
 
-      - name: Start Application
+      - name: Build and start application
         run: docker compose up -d --build
 
       
