@@ -15,4 +15,7 @@ jobs:
       - name: Build and start application
         run: docker compose up -d --build
 
+      - name: Smoke test
+        run: curl --fail http://localhost
+
       
