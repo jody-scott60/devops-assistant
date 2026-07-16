@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-
+      
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -14,6 +14,14 @@ jobs:
 
       - name: Build and start application
         run: docker compose up -d --build
+
+      - name: Wait for application to become healthy
+        run: |
+          CONTAINER_ID=$(docker compose ps -q)
+
+          until [ "$(docker inspect -f '{{.State.Health.Status}}' "$CONTAINER_ID")" = "healthy" ]; do
+            sleep 2
+          done
 
       - name: Smoke test
         run: curl --fail http://localhost

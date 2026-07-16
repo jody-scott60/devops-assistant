@@ -4,4 +4,9 @@ services:
     container_name: devops-assistant
     ports:
       - "80:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 5s
+      timeout: 30s
+      retries: 10
     restart: "no"
