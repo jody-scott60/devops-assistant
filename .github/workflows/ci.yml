@@ -18,4 +18,6 @@ jobs:
       - name: Smoke test
         run: curl --fail http://localhost
 
-      
+      - name: Verify page content
+        run: |
+          curl http://localhost | grep "DevOps Assistant"
